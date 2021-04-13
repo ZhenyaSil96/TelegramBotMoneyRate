@@ -1,0 +1,19 @@
+{
+    "course": [
+        {
+            "uuid": "f123",
+            "name": "Dollar",
+            "lengths": "28.0"
+        },
+        {
+            "uuid": "Number",
+            "name": "Evro",
+            "lengths": "32.0" 
+        },
+        {
+            "uuid": "Number",
+            "name": "Rubli",
+            "lengths": "0.17"  
+        }
+    ]
+}
