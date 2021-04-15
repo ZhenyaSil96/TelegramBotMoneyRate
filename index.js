@@ -17,15 +17,15 @@ const MoneySchema = new Schema({
     
   uuid: {
     type: String,
-    required: true
+    //required: true
    },
-name: {
+  name: {
         type: String,
-        required: true
+        //required: true
     },
-    lengths: {
+  lengths: {
         type: String,
-        required: true
+        //required: true
     }
     
 })
@@ -33,25 +33,22 @@ name: {
 const Money = mongoose.model('course', MoneySchema)
 
 const money = new Money({
-  "course": [
-    {
-        "uuid": "f123",
-        "name": "Dollar",
-        "lengths": "28.0"
-    },
-    {
-        "uuid": "Number",
-        "name": "Evro",
-        "lengths": "32.0" 
-    },
-    {
-        "uuid": "Number",
-        "name": "Rubli",
-        "lengths": "0.17"  
-    }
-]
+        uuid: "f123",
+        name: "Dollar",
+        lengths: "28.0"
 })
 
+const money1 = new Money({
+  uuid: "f567",
+  name: "Evro",
+  lengths: "32.0" 
+})
+
+const money2 = new Money({
+  uuid: "f890",
+  name: "Rubli",
+  lengths: "0.17" 
+})
 mongoose.connect("mongodb://localhost:27017/moneydb", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }, function(err){
     if(err) return console.log(err);
     app.listen(3000, function(){
@@ -63,6 +60,18 @@ money.save(function(err){
   mongoose.disconnect()
   if(err) return console.log(err)
   console.log('Save object = ', money)
+})
+
+money1.save((err) => {
+  mongoose.disconnect()
+  if(err) return console.log(err)
+  console.log('Save object money1 = ', money1)
+})
+
+money2.save((err) => {
+  mongoose.disconnect()
+  if(err) return console.log(err)
+  console.log('Save object money2 = ', money2)
 })
 //////////////////////////////////////////
 const bot = new TelegramBot(TOKEN, {
@@ -111,7 +120,7 @@ const bot = new TelegramBot(TOKEN, {
   })
 
   const dol = 'This dollars'
-bot.on('message', msg => {
+  bot.on('message', msg => {
   const chatId = msg.chat.id
 
 
